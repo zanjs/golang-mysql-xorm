@@ -2,22 +2,7 @@ package main
 
 import (
 	"database/sql"
-
-	"github.com/jinzhu/configor"
 )
-
-// DB is ...
-var DB *sql.DB
-
-func init() {
-
-	configor.Load(&Config, "config.yml")
-
-	DB, _ = sql.Open("mysql", Config.DB.UserName+":"+Config.DB.PassWord+"@/"+Config.DB.DBName+"?charset=utf8")
-	DB.SetMaxIdleConns(2000)
-	DB.SetMaxIdleConns(1000)
-	DB.Ping()
-}
 
 // Record is ...
 func Record(rows *sql.Rows) (record map[string]string) {

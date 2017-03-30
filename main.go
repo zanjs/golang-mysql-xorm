@@ -1,48 +1,67 @@
 package main
 
 import (
+	"database/sql"
 	"fmt"
 
 	_ "github.com/go-sql-driver/mysql"
+	"github.com/go-xorm/xorm"
+	"github.com/jinzhu/configor"
 )
+
+func init() {
+
+	configor.Load(&Config, "config.yml")
+
+	MysqlSRC = Config.DB.UserName + ":" + Config.DB.PassWord + "@/" + Config.DB.DBName + "?charset=utf8"
+
+	fmt.Println(MysqlSRC)
+
+	DB, _ = sql.Open("mysql", MysqlSRC)
+	DB.SetMaxIdleConns(2000)
+	DB.SetMaxIdleConns(1000)
+	DB.Ping()
+
+	Engine, _ = xorm.NewEngine("mysql", MysqlSRC)
+
+	DataInit()
+
+}
 
 func main() {
 	Usage()
-	// tt()
+	pay()
+	// 获取表数据信息
+	// orr, _ := Engine.DBMetas()
+
+	// fmt.Println(reflect.TypeOf(orr))
+
 	StartHTTPServer()
 }
 
-func tt() {
-	// a := make([]int64, 0)
+// Student is ...
+type Student struct {
+	Name    string
+	Age     int
+	Guake   bool
+	Classes []string
+	Price   float32
+}
 
-	a := make([]int64, 0, 20)
+func pay() {
 
-	fmt.Println(cap(a), len(a))
-
-	for i := 0; i < 3; i++ {
-		a = append(a, 1)
-		fmt.Println(cap(a), len(a))
+	st := &Student{
+		"Xiao Ming",
+		16,
+		true,
+		[]string{"Math", "English", "Chinese"},
+		9.99,
 	}
 
-	fmt.Println("sssss")
-	fmt.Println(a)
+	s2 := new(Student)
 
-	ss()
-}
+	s2.Age = 16
 
-// AAA ls
-type AAA struct {
-	A string
-	B int
-}
-
-func ss() {
-
-	a := new(AAA)
-
-	a.A = "hel lo"
-
-	fmt.Printf("%+v\n", a)
-	fmt.Println(a)
-
+	fmt.Println(s2)
+	fmt.Println(st)
 }
