@@ -10,12 +10,22 @@
 </head>
 <body>
     <div class="app" id="app">
+        
+    </div>
+    <div class="list" id="list">
         加载中...
+    </div>
+    <hr />
+    <div class="main">
+        <button type="button" onclick="List()">用户列表</button>
+        <button type="button" onclick="Create()">添加用户</button>
+        <button type="button" onclick="Update()">更新用户</button>
+        <button type="button" onclick="Del()">删除用户</button>
     </div>
 </body>
 <script>
     window.onload = function(){
-        
+        List()
     }
 </script>
 </html>

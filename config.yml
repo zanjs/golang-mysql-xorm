@@ -6,4 +6,8 @@ db:
   username: root
   password: root
   dbname: gotest
-  tablename: user 
+  tablename: user
+
+message:
+  success: success
+  error: error

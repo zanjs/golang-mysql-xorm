@@ -18,6 +18,10 @@ var Config = struct {
 		DBName    string `default:"gotest"`
 		TableName string `default:"users"`
 	}
+	Message struct {
+		Success string `default:"success"`
+		Error   string `default:"error"`
+	}
 }{}
 
 // DB is ...

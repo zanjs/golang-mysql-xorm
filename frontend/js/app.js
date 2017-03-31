@@ -21,6 +21,11 @@ function List() {
 
     Http(obj, function (data) {
         console.log(data)
+        ReactView(data)
+        if(!data.Code){
+            ListView(data.Data)
+
+        }
     })
 }
 // 创建用户
@@ -38,6 +43,7 @@ function Create(user = {}) {
     }
     Http(obj, function (data) {
         console.log(data)
+        ReactView(data)
     })
 }
 
@@ -62,6 +68,7 @@ function Update(user = {}) {
     }
     Http(obj, function (data) {
         console.log(data)
+        ReactView(data)
     })
 }
 
@@ -74,6 +81,7 @@ function Show(id = 1) {
     }
     Http(obj, function (data) {
         console.log(data)
+        ReactView(data)
     })
 }
 
@@ -86,5 +94,39 @@ function Del(id = 1) {
     }
     Http(obj, function (data) {
         console.log(data)
+        ReactView(data)
     })
+}
+
+// 渲染试图
+function ReactView(data) {
+    let str = JSON.stringify(data)
+
+    console.log(str)
+    let app = document.getElementById("app")
+    app.innerHTML = str
+}
+
+// 渲染 List
+function ListView(data) {
+    let len = data.length
+
+    let str = ''
+    for (var i = 0; i < len; i++) {
+        let obj = data[i]
+        str += `
+        <div>
+            <span>Name: ${obj.Name} </span>
+            <p>Age: ${obj.Age} </p>
+        </div>
+        <div>
+            <button type="button" onclick="Show(${obj.Id})">详细</button>
+            <button type="button" onclick="Del(${obj.Id})">删除</button>
+        <div>
+        <hr />
+        `
+    }
+
+    let list = document.getElementById("list")
+    list.innerHTML = str
 }

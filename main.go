@@ -30,7 +30,7 @@ func init() {
 
 func main() {
 	Usage()
-	pay()
+	// pay()
 	// 获取表数据信息
 	// orr, _ := Engine.DBMetas()
 
@@ -40,28 +40,28 @@ func main() {
 }
 
 // Student is ...
-type Student struct {
-	Name    string
-	Age     int
-	Guake   bool
-	Classes []string
-	Price   float32
-}
+// type Student struct {
+// 	Name    string
+// 	Age     int
+// 	Guake   bool
+// 	Classes []string
+// 	Price   float32
+// }
 
-func pay() {
+// func pay() {
 
-	st := &Student{
-		"Xiao Ming",
-		16,
-		true,
-		[]string{"Math", "English", "Chinese"},
-		9.99,
-	}
+// 	st := &Student{
+// 		"Xiao Ming",
+// 		16,
+// 		true,
+// 		[]string{"Math", "English", "Chinese"},
+// 		9.99,
+// 	}
 
-	s2 := new(Student)
+// 	s2 := new(Student)
 
-	s2.Age = 16
+// 	s2.Age = 16
 
-	fmt.Println(s2)
-	fmt.Println(st)
-}
+// 	fmt.Println(s2)
+// 	fmt.Println(st)
+// }

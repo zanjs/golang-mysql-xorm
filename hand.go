@@ -35,15 +35,10 @@ func Users(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	err := Engine.Find(&users)
 	// users := new(User)
 	// users, err := Engine.Table(Config.DB.UserName).Get(&User{Name: "anl"})
-
-	// fmt.Println(has)
+	CheckErr(err)
 	fmt.Println(users)
 
-	str, err := json.Marshal(users)
-
-	CheckErr(err)
-
-	fmt.Fprintln(w, string(str))
+	fmt.Fprintln(w, ReJSON(users))
 
 }
 
@@ -51,7 +46,7 @@ func Users(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 func UserOne(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	// r.FormValue()
 
-	id, err := strconv.ParseInt(ps.ByName("id"), 10, 64)
+	id, _ := strconv.ParseInt(ps.ByName("id"), 10, 64)
 
 	fmt.Println(id)
 
@@ -59,11 +54,7 @@ func UserOne(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	has, _ := Engine.Get(user)
 	fmt.Println(has)
 
-	str, err := json.Marshal(user)
-
-	CheckErr(err)
-
-	fmt.Fprintln(w, string(str))
+	fmt.Fprintln(w, ReJSON(user))
 }
 
 // UserCreate is ...
@@ -84,14 +75,7 @@ func UserCreate(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 
 	}
 
-	fmt.Println(name)
-	fmt.Println(age)
-
-	str, err := json.Marshal(user)
-
-	CheckErr(err)
-
-	fmt.Fprintln(w, string(str))
+	fmt.Fprintln(w, ReJSON(user))
 
 }
 
@@ -115,11 +99,7 @@ func UserUpdate(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 
 	}
 
-	str, err := json.Marshal(user)
-
-	CheckErr(err)
-
-	fmt.Fprintln(w, string(str))
+	fmt.Fprintln(w, ReJSON(user))
 }
 
 // UserDel is ...
@@ -137,7 +117,5 @@ func UserDel(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 
 	}
 
-	CheckErr(err)
-
-	fmt.Fprintln(w, string("ok"))
+	fmt.Fprintln(w, ReJSON(Config.Message.Success))
 }
