@@ -1,5 +1,7 @@
 ## api
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/zanjs/golang-mysql-xorm.svg)](https://greenkeeper.io/)
+
 ```
 <!--获取所有-->
 router.GET("/api/users", Users)
